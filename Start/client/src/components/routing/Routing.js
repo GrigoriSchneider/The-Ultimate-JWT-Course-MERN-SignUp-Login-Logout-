@@ -6,15 +6,18 @@ import Register from "../register/Register";
 import Home from "../home/Home";
 import Profile from "../profile/Profile";
 import Logout from "../logout/Logout";
+import PrivateRoute from "./PrivateRoute";
 
-const Routing = () => {
+const Routing = ({ user }) => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/logout" element={<Logout />} />
+      <Route element={<PrivateRoute user={user} />}>
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/logout" element={<Logout />} />
+      </Route>
     </Routes>
   );
 };

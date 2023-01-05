@@ -24,7 +24,7 @@ const App = () => {
       <div className="app">
         <Navbar user={user} />
         <div className="main">
-          <Routing />
+          <Routing user={user} />
         </div>
       </div>
     </Router>
