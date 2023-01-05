@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import http from "../../utils/http";
-import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [userDetails, setUserDetails] = useState({
@@ -9,7 +8,6 @@ const Register = () => {
     password: "",
   });
   const [error, setError] = useState(null);
-  let navigate = useNavigate(); // Important
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,7 +22,7 @@ const Register = () => {
       // destructure data
       const { data } = await http.post("/user", userDetails);
       localStorage.setItem("token", data);
-      navigate("/"); // redirect to homepage
+      window.location = "/";
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 400) {

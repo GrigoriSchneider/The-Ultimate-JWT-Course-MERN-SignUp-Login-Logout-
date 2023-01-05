@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import http from "../../utils/http";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({
@@ -8,7 +7,6 @@ const Login = () => {
     password: "",
   });
   const [error, setError] = useState(null);
-  let navigate = useNavigate(); // Important
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +21,7 @@ const Login = () => {
       // destructure data
       const { data } = await http.post("/auth", userDetails);
       localStorage.setItem("token", data);
-      navigate("/"); // redirect to homepage
+      window.location = "/";
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 400) {
