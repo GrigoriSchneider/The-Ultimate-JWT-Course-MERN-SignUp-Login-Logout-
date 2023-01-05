@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import http from "../../utils/http";
 
-const Login = () => {
+const Login = ({ user }) => {
   const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
   });
   const [error, setError] = useState(null);
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate(-1);
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
